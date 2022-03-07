@@ -1,0 +1,53 @@
+{% extends "base.html" %} {% block content %}
+<div class="flex flex-wrap flex-row justify-between items-center mb-8">
+	<div class="text-3xl font-bold text-center">TODO App - SIGNUP</div>
+</div>
+
+<form action="" method="post">
+	<div class="flex justify-center flex-col w-full text-base">
+		<div class="fieldWrapper">
+			<label for="{{ form.username.id_for_label }}">Username:</label
+			><br />
+			<ul class="mb-1 text-xs text-gray-500">
+				<li>
+					150 characters or fewer. Letters, digits and @/./+/-/_ only.
+				</li>
+			</ul>
+			{{ form.username }}
+			<div class="text-xs text-red-600 mb-2">{{ form.username.errors }}</div>
+		</div>
+		<div class="fieldWrapper">
+			<label for="{{ form.password.id_for_label }}">Password:</label>
+			<ul class="mb-1 text-xs text-gray-500">
+				<li>
+					Your password can't be too similar to your other personal
+					information.
+				</li>
+				<li>Your password must contain at least 8 characters.</li>
+				<li>Your password can't be a commonly used password.</li>
+				<li>Your password can't be entirely numeric.</li>
+			</ul>
+			{{ form.password1 }}
+			<div class="text-xs text-red-600 py-1 mb-2">{{ form.password.errors }}</div>
+		</div>
+		<div class="fieldWrapper">
+			<label for="{{ form.confirm_password.id_for_label }}"
+				>Confirm Password:</label
+			>
+			<ul class="mb-1 text-xs text-gray-500">
+				<li>Enter the same password as before, for verification.</li>
+			</ul>
+			{{ form.password2 }}
+			<div class="text-xs text-red-600 py-1 mb-2">{{ form.confirm_password.errors }}</div>
+		</div>
+		<div class="text-xs text-red-600 py-1 mb-2">{{ form.non_field_errors }}</div>
+		{% csrf_token %}
+		<button
+			class="bg-red-500 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-md font-base text-center mt-2 w-full"
+		>
+			Signup
+		</button>
+		<i class="mt-2 text-base text-center text-gray-600 py-1">Already Registered? <a class="text-red-600" href="/user/login/">Login</a></i>
+	</div>
+</form>
+{% endblock content %}

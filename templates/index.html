@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="flex flex-wrap flex-row justify-between items-center mb-8">
+    <div class="text-3xl font-bold">TODO App</div>
+</div>
+<br />
+<a href="/user/login/">
+    <button
+        class="bg-red-500 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-md font-base text-center mt-8 w-full"
+    >
+        Login
+    </button>
+</a>
+<br />
+<a href="/user/signup/">
+    <button
+        class="bg-red-500 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-md font-base text-center mt-8 w-full"
+    >
+        Signup
+    </button>
+</a>
+
+{% endblock content %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="flex flex-wrap flex-row justify-between items-center pb-4">
+  <div class="text-3xl font-bold">Hi {{request.user}}!</div>
+  <div class="text-lg text-red-600"><a href="/user/logout">Log out</a></div>
+</div>
+
+<form method="post">
+  <div class="flex flex-wrap justify-start items-center">
+    <div class="sm:w-96 w-full px-3">
+      <div class="flex items-center mb-4 mt-10 content-center">
+        <h1 class="text-4xl font-black ">Report Settings</h1>
+      </div>
+
+      {% csrf_token %}
+
+      <div class="mt-16 grid gap-6 ">
+        {% for field in form %}
+        <div>
+          {% if field.field.widget.input_type == 'checkbox' %}
+          {{ field }}
+          {{ field.label_tag }}
+          {% else %}
+          {{ field.label_tag }}
+          {{ field }}
+          {% endif %}
+          <span class="form-error">{{ field.errors.as_text }}</span>
+        </div>
+        {% endfor %}
+      </div>
+      <a href="/tasks/">
+        <button
+          class="bg-red-500 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-md font-base text-center mt-3 w-full">
+          Save
+        </button></a>
+    </div>
+  </div>
+</form>
+
+{% endblock %}

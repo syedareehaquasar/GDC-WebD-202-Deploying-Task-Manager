@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% block content %}
+<div class="flex flex-wrap flex-row justify-between items-center mb-8">
+	<div class="text-3xl font-bold text-center">TODO App - LOGIN</div>
+</div>
+
+<form action="" method="post">
+	<div class="flex justify-center flex-col w-full text-base">
+		<div class="fieldWrapper">
+			<label for="{{ form.username.id_for_label }}">Username:</label>
+			{{ form.username }}
+			<div class="text-xs text-red-600 py-1">{{ form.username.errors }}</div>
+		</div>
+		<div class="fieldWrapper">
+			<label for="{{ form.password.id_for_label }}">Password:</label>
+			{{ form.password }}
+			<div class="text-xs text-red-600 py-1">{{ form.password.errors }}</div>
+		</div>
+		<div class="text-xs text-red-600 py-1">{{ form.non_field_errors }}</div>
+		{% csrf_token %}
+		<button
+			class="bg-red-500 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-md font-base text-center mt-8 w-full"
+		>
+			Login
+		</button>
+		<i class="mt-2 text-base text-center text-gray-600 py-1">Not Registered? <a class="text-red-600" href="/user/signup/">Signup</a></i>
+	</div>
+</form>
+{% endblock content %}

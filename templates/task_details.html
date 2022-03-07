@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% block content %}
+<div class="flex flex-wrap flex-row justify-between items-center mb-8">
+	<div class="text-3xl font-bold">TODO App - Details</div>
+</div>
+<div class="flex justify-center flex-col w-full text-base">
+	<div class="font-medium text-black text-md mt-1">Task:</div>
+	<div class="p-1 my-2 bg-gray-200/75 rounded-lg w-full text-md">{{object.title}}</div>
+	<div class="font-medium text-black text-md mt-1">Description:</div>
+	<div class="p-1 my-2 bg-gray-200/75 rounded-lg w-full text-md">{{object.description}}</div>
+	<div class="font-medium text-black text-md mt-1">Status:</div>
+	<div class="p-1 my-2 bg-gray-200/75 rounded-lg w-full text-md">{{object.status}}</div>
+	<div class="font-medium text-black text-md mt-1">Priority:</div>
+	<div class="p-1 my-2 bg-gray-200/75 rounded-lg w-full text-md">{{object.priority}}</div>
+	<div class="font-medium text-black text-md mt-1">Created On:</div>
+	<div class="p-1 my-2 bg-gray-200/75 rounded-lg w-full text-md">{{object.created_date}}</div>
+</div>
+{% endblock content %}

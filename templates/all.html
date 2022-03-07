@@ -1,0 +1,68 @@
+{% extends "base_tabs.html" %} {% block content2 %}
+
+<ul class="flex flex-wrap justify-start items-center">
+	<li class="mr-2">
+		<a href="/all-tasks/"
+			class="inline-block py-2 px-4 text-base font-semibold text-center text-red-600 bg-red-100 rounded-full active"
+			aria-current="page">All</a>
+	</li>
+	<li class="mr-2">
+		<a href="/tasks/"
+			class="inline-block py-2 px-4 text-base font-semibold text-center text-gray-600 rounded-full hover:text-gray-900 hover:bg-gray-100">Pending</a>
+	</li>
+	<li>
+		<a href="/completed-tasks/"
+			class="inline-block py-2 px-4 text-base font-semibold text-center text-gray-600 rounded-full hover:text-gray-900 hover:bg-gray-100">Completed</a>
+	</li>
+</ul>
+
+<ul class="flex flex-col mt-3">
+	{% for task in tasks %}
+	<li class="bg-gray-200 flex flex-row mb-2 shadow border justify-around rounded-md p-4">
+		<div class="flex flex-col">
+			{% if task.status == "COMPLETED" %}
+			<div class="font-medium text-red-600 line-through text-base">
+				<a href="/details-task/{{ task.id }}">{{task.title}}</a>
+			</div>
+			{% else %}
+			<div class="font-medium text-black text-base">
+				<a href="/details-task/{{ task.id }}">{{task.title}}</a>
+			</div>
+			{% endif %}
+			<div class="text-gray-500 text-xs">{{task.created_date}}</div>
+		</div>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<div class="flex flex-wrap flex-row justify-end items-center">
+			{% if task.status == 'COMPLETED' %}
+			<p class="px-2 text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+				completed
+			</p>
+			{% elif task.status == "IN_PROGRESS" %}
+			<p class="px-2 text-xs leading-5 font-semibold rounded-full bg-lime-100 text-lime-800">
+				in progress
+			</p>
+			{% elif task.status == "PENDING" %}
+			<p class="px-2 text-xs leading-5 font-semibold rounded-full bg-amber-100 text-amber-800">
+				pending
+			</p>
+			{% else %}
+			<p class="px-2 text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+				cancelled
+			</p>
+			{% endif %}
+			&nbsp;&nbsp;
+			<a href="/delete-task/{{ task.id }}"
+				class="p-2 bg-red-500 rounded-lg text-center text-white text-sm mr-2"><i class="fas fa-trash"></i></a>
+			{% comment %} <a href="/complete_task/{{ task.id }}"
+				class="p-2 bg-green-500 rounded-lg text-center text-white text-sm mr-2"><i class="fas fa-check"></i></a>
+			{% endcomment %}
+			<a href="/update-task/{{ task.id }}" class="p-2 bg-teal-500 rounded-lg text-center text-white text-sm"><i
+					class="fas fa-edit"></i></a>
+		</div>
+	</li>
+	{% empty %}
+	<div class="font-medium text-gray-500 text-center py-10">No Tasks</div>
+	{% endfor %}
+</ul>
+
+{% endblock content2 %}
